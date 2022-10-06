@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         datos.add(new Datos("Yonathan","Pastrana","Tepeczin"));
         datos.add(new Datos("Yosef","Flores","Martinez"));
         datos.add(new Datos("Susano","Mora","Gatica"));
-        datos.add(new Datos("Victor","Bautista","Nieves"));
+        datos.add(new Datos("Adrian","Gutiérrez","Nava"));
 
         AdaptadorNombres mi_adaptador=new AdaptadorNombres(this, R.layout.list_nombres,datos);
         lvNombres.setAdapter(mi_adaptador);
