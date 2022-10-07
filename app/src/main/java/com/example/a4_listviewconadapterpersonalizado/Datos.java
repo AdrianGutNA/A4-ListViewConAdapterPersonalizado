@@ -1,43 +1,36 @@
 package com.example.a4_listviewconadapterpersonalizado;
 
-public class Datos {
+import java.util.ArrayList;
+
+public class Datos
+{
+    private int imagenId;
     private String nombre;
-    private String ApellidoP;
-    private String ApellodoM;
+    private String apellidos;
 
     public Datos() {}
 
-    public Datos(String nombre, String apellidoP, String apellodoM) {
+    public Datos(int imagenId,String nombre, String apellidos)
+    {
+        this.imagenId = imagenId;
         this.nombre = nombre;
-        ApellidoP = apellidoP;
-        ApellodoM = apellodoM;
+        this.apellidos = apellidos;
+    }
+    public  int getImagenId()
+    {
+        return imagenId;
     }
 
-    public String getNombre() {
+    public String getNombre()
+    {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getApellidos()
+    {
+        return apellidos;
     }
 
-    public String getApellidoP() {
-        return ApellidoP;
-    }
-
-    public void setApellidoP(String apellidoP) {
-        ApellidoP = apellidoP;
-    }
-
-    public String getApellodoM() {
-        return ApellodoM;
-    }
-
-    public void setApellodoM(String apellodoM) {
-        ApellodoM = apellodoM;
-    }
-    @Override
-    public String toString(){
-        return nombre+"  "+ApellidoP+"  "+ApellodoM;
-    }
 }
+
+

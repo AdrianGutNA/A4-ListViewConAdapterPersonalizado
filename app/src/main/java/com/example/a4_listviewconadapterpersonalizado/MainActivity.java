@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,23 +17,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lvNombres= (ListView) findViewById(R.id.lvNombres);
 
         datos = new ArrayList<Datos>();
-        datos.add(new Datos("Amado","Perez","Cochine"));
-        datos.add(new Datos("Kevin","Garcia","Camacho"));
-        datos.add(new Datos("Yonathan","Pastrana","Tepeczin"));
-        datos.add(new Datos("Yosef","Flores","Martinez"));
-        datos.add(new Datos("Susano","Mora","Gatica"));
-        datos.add(new Datos("Adrian","Gutiérrez","Nava"));
+        datos.add(new Datos(R.drawable.alumno,"Alejandro","Hernandez Cochine"));
+        datos.add(new Datos(R.drawable.alumno,"Andres","Garcia Gracia"));
+        datos.add(new Datos(R.drawable.alumno,"Adrian","Gutiérrez Nava"));
+        datos.add(new Datos(R.drawable.alumno,"Cleto","Gonzales Jaimes"));
+        datos.add(new Datos(R.drawable.alumno,"Tiburcio","Arellano Estrada"));
+        datos.add(new Datos(R.drawable.alumno,"Alberto","Nava Maximo"));
+        datos.add(new Datos(R.drawable.alumno,"Juan","Torres Sales"));
+        datos.add(new Datos(R.drawable.alumno,"Ana","Miranda Bonifacio"));
 
-        AdaptadorNombres mi_adaptador=new AdaptadorNombres(this, R.layout.list_nombres,datos);
+        AdaptadorNombres mi_adaptador=new AdaptadorNombres(this, datos);
+        lvNombres= (ListView) findViewById(R.id.lvNombres);
         lvNombres.setAdapter(mi_adaptador);
-
 
         lvNombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Has pulsado: "+ datos.get(position), Toast.LENGTH_LONG).show();
+                Datos datos = mi_adaptador.getItem(position);
+                assert datos != null;
+
+                Toast.makeText(MainActivity.this, "Has pulsado: " + datos.getNombre() + " " + datos.getApellidos(), Toast.LENGTH_LONG).show();
             }
         });
     }

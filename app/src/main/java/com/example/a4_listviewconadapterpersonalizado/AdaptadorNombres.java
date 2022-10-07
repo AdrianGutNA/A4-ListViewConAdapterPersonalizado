@@ -3,46 +3,39 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.ArrayList;
 
-import java.util.List;
+public class AdaptadorNombres extends ArrayAdapter<Datos>
+{
 
-public class AdaptadorNombres extends BaseAdapter {
-    private Context context;
-    private int layout;
-    private List<Datos> datos;
-
-    public AdaptadorNombres(Context context, int layout, List<Datos> datos) {
-        this.context = context;
-        this.layout = layout;
-        this.datos = datos;
+    public AdaptadorNombres(Context context, ArrayList<Datos> arrayList)
+    {
+        super(context, 0, arrayList);
     }
 
     @Override
-    public int getCount() {
-        return datos.size();
-    }
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
 
-    @Override
-    public Object getItem(int position) {
-        return datos.get(position);
-    }
+        View v = convertView;
+        v = LayoutInflater.from(getContext()).inflate(R.layout.list_nombres, parent, false);
 
-    @Override
-    public long getItemId(int id) {
-        return id;
-    }
+        Datos datos = getItem(position);
+        ImageView img = v.findViewById(R.id.imgView);
+        assert datos != null;
 
-    @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        View v = view;
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        v = layoutInflater.inflate(R.layout.list_nombres, null);
-        String nombreActual= String.valueOf(datos.get(position));
-        TextView tvNombre=v.findViewById(R.id.txtNombre);
-        tvNombre.setText(nombreActual);
+        img.setImageResource(datos.getImagenId());
+
+        TextView tvNombre = v.findViewById(R.id.txtNombre);
+        tvNombre.setText(datos.getNombre());
+
+        TextView tvApellido = v.findViewById(R.id.txtApellido);
+        tvApellido.setText(datos.getApellidos());
+
         return v;
     }
-
 }
+
